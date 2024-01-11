@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Check MongoDB Username
         run: |
-          if [[ -z "${{ secrets.MONGODB_USERNAME }}" ]]; then 
+          if [[ -z "${MONGODB_USERNAME}" ]]; then 
             echo "MONGODB username is not set!" 
             exit 1 
           else 
@@ -49,6 +49,7 @@ jobs:
       - name: Output information
         env:
           PORT: 3000
+          MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
         run: |
           echo "MONGODB_DB_NAME: $MONGODB_DB_NAME"
           echo "MONGODB_USERNAME: $MONGODB_USERNAME"
